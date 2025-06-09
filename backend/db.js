@@ -1,6 +1,8 @@
 import { createConnection } from 'mysql2';
 import dotenv from 'dotenv';
 
+dotenv.config();
+
 // Crée une connexion
 const connection = createConnection({
   host: process.env.DB_HOST,
