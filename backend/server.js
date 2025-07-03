@@ -1,11 +1,15 @@
 import express, { json } from 'express';
 import dotenv from 'dotenv';
 import connection from './db.js';
+import cors from 'cors';
+import utilisateurRoute from './routes/spectateur.js';
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(cors()); // permet au front React de faire des requêtes
+app.use('/api/utilisateur', utilisateurRoute);
 
 // Routes de base
 app.get('/', (req, res) => {
@@ -17,8 +21,11 @@ app.listen(port, () => {
   console.log(`Serveur démarré sur http://localhost:${port}`);
 });
 
-// Exemple d'une requête
-connection.query('SELECT * FROM utilisateur', (err, results) => {
-  if (err) throw err;
-  console.log(results);
-});
+(async () => {
+  try {
+    const [rows] = await connection.query('SELECT * FROM utilisateur');
+    console.log(rows);
+  } catch (err) {
+    console.error('Erreur lors de la requête test :', err);
+  }
+})();

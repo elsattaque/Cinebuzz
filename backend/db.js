@@ -1,10 +1,10 @@
-import { createConnection } from 'mysql2';
+import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 // Crée une connexion
-const connection = createConnection({
+const connection = await mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
@@ -12,12 +12,7 @@ const connection = createConnection({
 });
 
 // Connexion
-connection.connect((err) => {
-  if (err) {
-    console.error('Erreur de connexion :', err.stack);
-    return;
-  }
-  console.log('Connecté à MySQL avec l’ID de connexion ' + connection.threadId);
-});
+console.log('Connecté à MySQL avec ID de connexion :', connection.threadId);
+
 
 export default connection;
