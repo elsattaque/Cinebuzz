@@ -1,0 +1,103 @@
+.sidebar {
+  width: 16rem;
+  background-color: #92400e;
+  min-height: calc(100vh - 80px);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navigation */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: #fbbf24;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  background-color: #a16207;
+}
+
+.nav-item-active {
+  background-color: #a16207;
+  color: #fbbf24;
+}
+
+.nav-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.nav-label {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+/* Audio Controls */
+.audio-controls {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.audio-control {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.audio-indicator {
+  width: 1rem;
+  height: 1rem;
+  background-color: #b45309;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.audio-bar {
+  flex: 1;
+  height: 0.5rem;
+  background-color: #b45309;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.audio-progress {
+  height: 100%;
+  background-color: #f59e0b;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+/* Brand Footer */
+.sidebar-footer {
+  margin-top: auto;
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.brand-title {
+  color: #fbbf24;
+  font-weight: bold;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.brand-subtitle {
+  color: #fbbf24;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  margin-top: 0.25rem;
+}
