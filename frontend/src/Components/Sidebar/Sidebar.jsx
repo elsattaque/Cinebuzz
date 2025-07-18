@@ -1,4 +1,3 @@
-import React from "react";
 import { Menu, TrendingUp, Heart, Bookmark, User } from "lucide-react";
 import "./Sidebar.css";
 

@@ -1,20 +1,29 @@
-import React from "react";
 import { Search, Bell, User } from "lucide-react";
 import logo from "../../assets/images/LogoCinebuzzV1.png";
 import "./Header.css";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const goToUserProfile = () => {
+    navigate("/user");
+  };
+
   return (
     <header className="header">
       <div className="header-content">
-        {/* Logo */}
-        <img
-          src={logo}
-          alt="CineBuzz"
-          className="logo"
-          width="100"
-          height="65"
-        />
+        <Link to="/">
+          {/* Logo */}
+          <img
+            src={logo}
+            alt="CineBuzz"
+            className="logo"
+            width="100"
+            height="65"
+          />
+        </Link>
 
         {/* Search Bar */}
         <div className="search-section">
@@ -31,7 +40,7 @@ const Header = () => {
         {/* User Actions */}
         <div className="user-section">
           <Bell className="notification-icon" />
-          <div className="user-avatar">
+          <div className="user-avatar" onClick={goToUserProfile} style={{ cursor: "pointer" }}>
             <User className="user-icon" />
           </div>
         </div>

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Film.css';
 import logo from '../assets/LogoCinebuzzV1.png';
+import { useParams } from "react-router-dom";
+import { moviesData } from '../Data/MoviesData';
 
 const Don = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -13,6 +15,10 @@ const Don = () => {
     e.preventDefault();
     alert(`Recherche lancée pour : "${searchInput}"`);
   };
+  
+  const { id } = useParams();
+  const movie = moviesData.find((m) => m.id.toString() === id);
+  if (!movie) return <p>Film introuvable</p>;
 
   return (
     <div className="film-container">
@@ -47,7 +53,8 @@ const Don = () => {
           <p>*(Vous allez etre redirigé vers la cagnotte de l'artiste)</p>
           <a
             href="https://www.leetchi.com/fr/collecter-recolter-don-d-argent-en-ligne?utm_source=bing&utm_medium=cpc&utm_campaign=lca_gen_categorie&utm_term=search_generic&msclkid=404cc0eb982519b0dc1ca8acbc22c0ec"
-            target="_blank" // permet de rester sur la page ouvre simplement un onlget en plus               
+            target="_blank" // permet de rester sur la page ouvre simplement un onlget en plus    
+            rel="noreferrer"           
           >
             Faire un don sur Leetchi
           </a>

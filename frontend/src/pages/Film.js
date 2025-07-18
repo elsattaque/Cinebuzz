@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Film.css'; 
-import logo from '../assets/LogoCinebuzzV1.png'; 
+import { useState } from 'react';
+import './Film.css';
+import logo from '../assets/LogoCinebuzzV1.png';
+import { useNavigate, useParams } from "react-router-dom";
+import { moviesData } from '../Data/MoviesData';
 
 const Film = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [likes, setLikes] = useState(0);
   const [commentInput, setCommentInput] = useState('');
   const [comments, setComments] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
   const [searchInput, setSearchInput] = useState('');
-  const navigate = useNavigate();
+
+  const movie = moviesData.find((m) => m.id.toString() === id);
+  if (!movie) return <p>Film introuvable</p>;
+
+  const goToDonPage = () => {
+    navigate(`/Don/${movie.id}`);
+  };
 
   const handleLike = () => {
     if (!isLiked) {
@@ -79,13 +89,13 @@ const Film = () => {
                   className={`film-action-button ${isLiked ? 'film-like-button' : 'film-normal-button'}`}
                 >
                   🍿 <span>Like</span>
-                </button>          
+                </button>
                 <button
                   className="film-action-button film-don-button"
-                  onClick={() => navigate('/don')}
+                  onClick={goToDonPage}
                 >
                   💖 <span>Don</span>
-                </button>                      
+                </button>
                 <div className="film-likes-count">
                   {likes} {likes <= 1 ? 'like' : 'likes'}
                 </div>
@@ -121,7 +131,7 @@ const Film = () => {
             <div className="film-comments-list">
               {comments.map((comment, index) => (
                 <div key={index} className="film-comment-item">
-                  <div className="film-comment-content">                    
+                  <div className="film-comment-content">
                     <div className="film-comment-text">
                       <div className="film-username">Utilisateur</div>
                       <div className="film-comment">{comment}</div>

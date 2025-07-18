@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import GenreFilter from "../GenreFilter/GenreFilter";
 import MovieGrid from "../MovieGrid/MovieGrid";
 import { moviesData } from "../../Data/MoviesData";

@@ -1,5 +1,5 @@
-import React from "react";
 import "./MovieCard.css";
+import { Link } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
   const getRatingColor = (rating) => {
@@ -10,17 +10,19 @@ const MovieCard = ({ movie }) => {
   };
 
   return (
-    <div className="movie-card">
-      <div className="movie-poster">
-        <div className="movie-content">
-          <span className="movie-title-overlay">{movie.title}</span>
+    <Link to={`/movie/${movie.id}`} className="movie-card-link">
+      <div className="movie-card">
+        <div className="movie-poster">
+          <div className="movie-content">
+            <span className="movie-title-overlay">{movie.title}</span>
+          </div>
+          <div className={`movie-rating ${getRatingColor(movie.rating)}`}>
+            {movie.rating}
+          </div>
         </div>
-        <div className={`movie-rating ${getRatingColor(movie.rating)}`}>
-          {movie.rating}
-        </div>
+        <h3 className="movie-title">{movie.title}</h3>
       </div>
-      <h3 className="movie-title">{movie.title}</h3>
-    </div>
+    </Link>
   );
 };
 
