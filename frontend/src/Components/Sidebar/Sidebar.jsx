@@ -1,5 +1,6 @@
 import { Menu, TrendingUp, Heart, Bookmark, User } from "lucide-react";
 import "./Sidebar.css";
+import React from 'react';
 
 const Sidebar = () => {
   const menuItems = [

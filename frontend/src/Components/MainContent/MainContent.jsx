@@ -3,7 +3,7 @@ import GenreFilter from "../GenreFilter/GenreFilter";
 import MovieGrid from "../MovieGrid/MovieGrid";
 import { moviesData } from "../../Data/MoviesData";
 import "./MainContent.css";
-
+import React from "react";
 const MainContent = () => {
   const [selectedGenre, setSelectedGenre] = useState("Amour");
 

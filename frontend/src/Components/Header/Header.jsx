@@ -3,6 +3,7 @@ import logo from "../../assets/images/LogoCinebuzzV1.png";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import React from 'react';
 
 const Header = () => {
   const navigate = useNavigate();

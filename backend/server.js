@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import connection from './db.js';
 import cors from 'cors';
 import utilisateurRoute from './routes/spectateur.js';
+import filmRoute from './routes/film.js';
 dotenv.config();
 
 const app = express();
@@ -10,6 +11,7 @@ const port = process.env.PORT || 3000;
 
 app.use(cors()); // permet au front React de faire des requêtes
 app.use('/api/utilisateur', utilisateurRoute);
+app.use('/api/film', filmRoute);
 
 // Routes de base
 app.get('/', (req, res) => {

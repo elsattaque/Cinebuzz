@@ -3,6 +3,7 @@ import './Film.css';
 import logo from '../assets/LogoCinebuzzV1.png';
 import { useNavigate, useParams } from "react-router-dom";
 import { moviesData } from '../Data/MoviesData';
+import React from 'react';
 
 const Film = () => {
   const { id } = useParams();

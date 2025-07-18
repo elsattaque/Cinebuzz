@@ -1,5 +1,6 @@
 import MovieCard from "../MovieCard/MovieCard";
 import "./MovieGrid.css";
+import React from 'react';
 
 const MovieGrid = ({ movies }) => {
   //placeholders pour remplir la grille

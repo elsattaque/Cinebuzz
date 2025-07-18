@@ -2,12 +2,13 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Film from './pages/Film';
 import Don from './pages/Don'; 
-import MovieCardDetails from './components/MovieCardDetails';
-import Sidebar from "./components/Sidebar/Sidebar";
-import Header from "./components/Header/Header";
-import MainContent from "./components/MainContent/MainContent";
+import MovieCardDetails from './components/MovieCardDetails.jsx';
+import Sidebar from "./components/Sidebar/Sidebar.jsx";
+import Header from "./components/Header/Header.jsx";
+import MainContent from "./components/MainContent/MainContent.jsx";
 import UserProfile from "./components/UserProfile.js";
 import "./App.css";
+import React from 'react';
 
 // function Home() {
 //   return (
@@ -46,7 +47,11 @@ const App = () => {
         </Routes>
       </div>
     </div>
+
   );
 };
 
 export default App;
+
+
+
