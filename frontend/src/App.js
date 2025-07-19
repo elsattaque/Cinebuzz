@@ -3,14 +3,16 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Film from './pages/Film';
-import Don from './pages/Don'; 
+import Don from './pages/Don';
+import AjoutFilm from './pages/AjoutFilm';
+
 
 function Home() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Edit <code>src/App.js</code> and save to reload.</p>
+        <p>Édite <code>src/App.js</code> puis sauvegarde pour voir les changements.</p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -20,9 +22,9 @@ function Home() {
           Learn React
         </a>
         <br />
-        <Link to="/film" >
-          FilmTest
-        </Link>
+        <Link to="/film/1">FilmTest</Link> {/* Change 1 par un ID existant */}
+        <Link to="/ajouter-film">🎬 Ajouter un film</Link>
+     
       </header>
     </div>
   );
@@ -33,8 +35,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/film" element={<Film />} />
-        <Route path="/don" element={<Don />} />
+        <Route path="/film/:id" element={<Film />} />
+        <Route path="/don/:id" element={<Don />} />
+        <Route path="/ajouter-film" element={<AjoutFilm />} />
+
       </Routes>
     </Router>
   );

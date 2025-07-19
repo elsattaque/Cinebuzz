@@ -1,18 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './Film.css';
 import logo from '../assets/LogoCinebuzzV1.png';
 
 const Don = () => {
-  const [searchInput, setSearchInput] = useState('');
+  const { id } = useParams(); // filmId
+  const [donInfo, setDonInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const handleSearchChange = (e) => {
-    setSearchInput(e.target.value);
-  };
+  useEffect(() => {
+    const fetchDonLien = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/don/film/${id}`);
+        if (!response.ok) throw new Error("Erreur serveur");
+        const data = await response.json();
+        setDonInfo(data);
+      } catch (err) {
+        console.error('Erreur lors du chargement du lien de don :', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchDonLien();
+  }, [id]);
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    alert(`Recherche lancée pour : "${searchInput}"`);
-  };
+  console.log("Film ID reçu dans Don.js :", id);
+
+
+  if (loading) return <div>Chargement...</div>;
+  if (!donInfo) return <div>Aucune information de don disponible.</div>;
 
   return (
     <div className="film-container">
@@ -22,34 +38,20 @@ const Don = () => {
             <img src={logo} alt="Logo" className="film-logo-icon" />
             <span className="film-logo-text">CINEBUZZ</span>
           </div>
-
-          <form className="film-search-form" onSubmit={handleSearchSubmit}>
-            <input
-              type="text"
-              className="film-search-input"
-              placeholder="Recherche..."
-              value={searchInput}
-              onChange={handleSearchChange}
-            />
-            <button type="submit" className="film-search-button">
-              🔍
-            </button>
-          </form>
         </div>
       </header>
 
       <main className="film-main-content">
         <div className="film-card" style={{ textAlign: 'center' }}>
-          <h2>Faire un don</h2>
-          <p>
-            Pour soutenir notre projet, et faire le buzz avec nous, vous pouvez faire un don en cliquant sur le lien ci-dessous* :
-          </p>
-          <p>*(Vous allez etre redirigé vers la cagnotte de l'artiste)</p>
+          <h2>Soutenez {donInfo.prenom} {donInfo.nom}</h2>
+          <p>✨ Encouragez la création indépendante en participant à la cagnotte du réalisateur !</p>
           <a
-            href="https://www.leetchi.com/fr/collecter-recolter-don-d-argent-en-ligne?utm_source=bing&utm_medium=cpc&utm_campaign=lca_gen_categorie&utm_term=search_generic&msclkid=404cc0eb982519b0dc1ca8acbc22c0ec"
-            target="_blank" // permet de rester sur la page ouvre simplement un onlget en plus               
+            href={donInfo.lien_dons}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="film-don-button"
           >
-            Faire un don sur Leetchi
+            💖 Veuillez cliquer ici pour aller à la page du site de don
           </a>
         </div>
       </main>

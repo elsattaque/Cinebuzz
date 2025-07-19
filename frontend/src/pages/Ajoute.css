@@ -1,0 +1,112 @@
+/* Style pour la page AjoutFilm dans le même style que Film.css */
+
+.ajout-film-container {
+  min-height: 100vh;
+  background-color: #d2943d;
+  font-family: Arial, sans-serif;
+}
+
+.ajout-film-main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.ajout-film-card {
+  max-width: 80%;
+  margin: 0 auto;
+  background-color: #f5c077;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #2e1514;
+}
+
+.ajout-film-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ajout-film-form h2 {
+  color: #2e1514;
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.ajout-film-form input,
+.ajout-film-form textarea {
+  background-color: rgba(146, 64, 14, 0.3);
+  border: 1px solid #2e1514;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #2e1514;
+  transition: border-color 0.3s;
+}
+
+.ajout-film-form input:focus,
+.ajout-film-form textarea:focus {
+  outline: none;
+  border-color: #2e1514;
+  box-shadow: 0 0 0 2px rgba(46, 21, 20, 0.1);
+}
+
+.ajout-film-form input::placeholder,
+.ajout-film-form textarea::placeholder {
+  color: rgba(46, 21, 20, 0.7);
+}
+
+.ajout-film-form textarea {
+  min-height: 100px;
+  resize: vertical;
+  font-family: Arial, sans-serif;
+}
+
+.ajout-film-form input[type="date"] {
+  color: #2e1514;
+}
+
+.ajout-film-form input[type="number"] {
+  color: #2e1514;
+}
+
+.ajout-film-form button {
+  background-color: #2e1514;
+  color: white;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.ajout-film-form button:hover {
+  background-color: #b45309;
+}
+
+.ajout-film-form button:active {
+  transform: translateY(1px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .ajout-film-card {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  
+  .ajout-film-form h2 {
+    font-size: 20px;
+  }
+  
+  .ajout-film-form input,
+  .ajout-film-form textarea {
+    padding: 10px 12px;
+  }
+}
