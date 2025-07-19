@@ -1,34 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
 import './Film.css';
 import logo from '../assets/LogoCinebuzzV1.png';
+import { useParams } from "react-router-dom";
+import { moviesData } from '../Data/MoviesData';
+import React from 'react';
 
 const Don = () => {
-  const { id } = useParams(); // filmId
-  const [donInfo, setDonInfo] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [searchInput, setSearchInput] = useState('');
 
-  useEffect(() => {
-    const fetchDonLien = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/don/film/${id}`);
-        if (!response.ok) throw new Error("Erreur serveur");
-        const data = await response.json();
-        setDonInfo(data);
-      } catch (err) {
-        console.error('Erreur lors du chargement du lien de don :', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchDonLien();
-  }, [id]);
+  const handleSearchChange = (e) => {
+    setSearchInput(e.target.value);
+  };
 
-  console.log("Film ID reçu dans Don.js :", id);
-
-
-  if (loading) return <div>Chargement...</div>;
-  if (!donInfo) return <div>Aucune information de don disponible.</div>;
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    alert(`Recherche lancée pour : "${searchInput}"`);
+  };
 
   return (
     <div className="film-container">
@@ -46,12 +33,10 @@ const Don = () => {
           <h2>Soutenez {donInfo.prenom} {donInfo.nom}</h2>
           <p>✨ Encouragez la création indépendante en participant à la cagnotte du réalisateur !</p>
           <a
-            href={donInfo.lien_dons}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="film-don-button"
+            href="https://www.leetchi.com/fr/collecter-recolter-don-d-argent-en-ligne?utm_source=bing&utm_medium=cpc&utm_campaign=lca_gen_categorie&utm_term=search_generic&msclkid=404cc0eb982519b0dc1ca8acbc22c0ec"
+            target="_blank" // permet de rester sur la page ouvre simplement un onlget en plus               
           >
-            💖 Veuillez cliquer ici pour aller à la page du site de don
+            Faire un don sur Leetchi
           </a>
         </div>
       </main>

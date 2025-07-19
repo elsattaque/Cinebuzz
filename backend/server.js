@@ -1,33 +1,33 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-require('dotenv').config();
+import express from 'express';
+import dotenv from 'dotenv';
+import connection from './db.js';
+import cors from 'cors';
+import utilisateurRoute from './routes/spectateur.js';
+import filmRoute from './routes/film.js';
+dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const port = process.env.PORT || 3000;
 
-const R_Film = require('./routes/R_Film');
-const R_Don = require('./routes/R_don');
-//const R_Review = require('./routes/R_Review');
-const review = require('./routes/review');
-const R_ajoute = require('./routes/R_ajoute');
+app.use(cors()); // permet au front React de faire des requêtes
+app.use('/api/utilisateur', utilisateurRoute);
+app.use('/api/film', filmRoute);
 
-
-app.use(cors({
-  origin: 'http://localhost:3001'  // Ton front React sur ce port
-}));
-
-app.use(bodyParser.json());
-
-// routes
-//app.use('/review', R_Review);
-app.use('/don', R_Don);
-app.use('/films', R_Film);
-app.use('/review', review);
-app.use('/ajouter', R_ajoute);
-
-
-
-app.listen(PORT, () => {
-  console.log(`Serveur backend démarré sur http://localhost:${PORT}`);
+// Routes de base
+app.get('/', (req, res) => {
+  res.send('Hello World!');
 });
+
+// Démarrage du serveur
+app.listen(port, () => {
+  console.log(`Serveur démarré sur http://localhost:${port}`);
+});
+
+(async () => {
+  try {
+    const [rows] = await connection.query('SELECT * FROM utilisateur');
+    console.log(rows);
+  } catch (err) {
+    console.error('Erreur lors de la requête test :', err);
+  }
+})();

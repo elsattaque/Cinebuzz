@@ -1,0 +1,18 @@
+.realisateur-card .right-section a {
+  color: #EEB42C;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.realisateur-card .right-section a:hover {
+  color: #DC901E;
+}
+
+.realisateur-card .review ul {
+  list-style: none;
+  padding: 0;
+}
+
+.realisateur-card .review li {
+  margin-bottom: 6px;
+}

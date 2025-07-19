@@ -1,21 +1,18 @@
-const mysql = require('mysql2');
-require('dotenv').config();
+import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
 
-const connection = mysql.createConnection({
+dotenv.config();
+
+// Crée une connexion
+const connection = await mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD || '',
+  password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error('Erreur de connexion à la base de données:', err);
-    return;
-  }
-  console.log('Connecté à la bdd');
-});
+// Connexion
+console.log('Connecté à MySQL avec ID de connexion :', connection.threadId);
 
-const db = connection.promise();  
 
-module.exports = db;
+export default connection;

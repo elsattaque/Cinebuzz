@@ -4,6 +4,9 @@ import './Film.css';
 //import logo from '../assets/LogoCinebuzzV1.png';
 
 const Film = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [likes, setLikes] = useState(0);
   const [commentInput, setCommentInput] = useState('');
   const [comments, setComments] = useState([]);
@@ -93,7 +96,7 @@ const Film = () => {
                 </button>
                 <button
                   className="film-action-button film-don-button"
-                  onClick={() => navigate('/don')}
+                  onClick={goToDonPage}
                 >
                   💖 <span>Don</span>
                 </button>

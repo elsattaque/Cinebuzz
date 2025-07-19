@@ -1,47 +1,57 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import logo from './logo.svg';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Film from './pages/Film';
-import Don from './pages/Don';
-import AjoutFilm from './pages/AjoutFilm';
+import Don from './pages/Don'; 
+import MovieCardDetails from './components/MovieCardDetails.jsx';
+import Sidebar from "./components/Sidebar/Sidebar.jsx";
+import Header from "./components/Header/Header.jsx";
+import MainContent from "./components/MainContent/MainContent.jsx";
+import UserProfile from "./components/UserProfile.js";
+import "./App.css";
+import React from 'react';
 
+// function Home() {
+//   return (
+//     <div className="App">
+//       <header className="App-header">
+//         <MovieCardDetails />
+//         <br />
+//         <Link to="/film">FilmTest</Link>
+//       </header>
+//     </div>
+//   );
+// }
 
-function Home() {
+// function App() {
+//   return (
+//     <Routes>
+//       {/* <Route path="/" element={<Home />} /> */}
+//       <Route path="/film" element={<Film />} />
+//       <Route path="/don" element={<Don />} />
+//     </Routes>
+//   );
+// }
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Édite <code>src/App.js</code> puis sauvegarde pour voir les changements.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <br />
-        <Link to="/film/1">FilmTest</Link> {/* Change 1 par un ID existant */}
-        <Link to="/ajouter-film">🎬 Ajouter un film</Link>
-     
-      </header>
+    <div className="app">
+      <Header />
+      <div className="app-body">
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<MainContent />} />
+          <Route path="/movie/:id" element={<MovieCardDetails />} />
+          <Route path="/film/:id" element={<Film />} />
+          <Route path="/don/:id" element={<Don />} />
+          <Route path="/user" element={<UserProfile />} />
+        </Routes>
+      </div>
     </div>
-  );
-}
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/film/:id" element={<Film />} />
-        <Route path="/don/:id" element={<Don />} />
-        <Route path="/ajouter-film" element={<AjoutFilm />} />
-
-      </Routes>
-    </Router>
   );
-}
+};
 
 export default App;
+
+
+
