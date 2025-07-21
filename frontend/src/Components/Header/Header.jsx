@@ -1,12 +1,20 @@
-import { Search, Bell, User } from "lucide-react";
+import { Search, Bell, User, Settings, PlusCircle } from "lucide-react";
 import logo from "../../assets/images/LogoCinebuzzV1.png";
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import React from 'react';
+import { useNavigate, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+
+  // Simule la récupération du nom utilisateur (après login)
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser?.prenom) {
+      setUserName(storedUser.prenom);
+    }
+  }, []);
 
   const goToUserProfile = () => {
     navigate("/user");
@@ -15,8 +23,8 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-content">
+        {/* Logo */}
         <Link to="/">
-          {/* Logo */}
           <img
             src={logo}
             alt="CineBuzz"
@@ -31,7 +39,7 @@ const Header = () => {
           <div className="search-container">
             <input
               type="text"
-              placeholder="Search for something ..."
+              placeholder="Rechercher ..."
               className="search-input"
             />
             <Search className="search-icon" />
@@ -39,11 +47,37 @@ const Header = () => {
         </div>
 
         {/* User Actions */}
+
         <div className="user-section">
+          {/* Lien vers ajout de film */}
+          <Link to="/ajouter-film">
+            <PlusCircle className="add-pluscircle-icon" />
+          </Link>
+
+          {/* Lien vers l'accueil */}
+          <Link to="/" className="nav-link">
+            Accueil
+          </Link>
+
+          {/* Lien vers les paramètres */}
+          <Link to="/settings" className="nav-link">
+            <Settings className="settings-icon" />
+          </Link>
+
+          {/* Notification */}
           <Bell className="notification-icon" />
-          <div className="user-avatar" onClick={goToUserProfile} style={{ cursor: "pointer" }}>
+
+          {/* Profil utilisateur */}
+          <div
+            className="user-avatar"
+            onClick={goToUserProfile}
+            style={{ cursor: "pointer" }}
+          >
             <User className="user-icon" />
           </div>
+
+          {/* Affichage du prénom s'il est connu */}
+          {userName && <span className="username">Bienvenue, {userName}</span>}
         </div>
       </div>
     </header>

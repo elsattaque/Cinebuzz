@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Film from './pages/Film';
@@ -8,49 +7,8 @@ import Sidebar from "./Components/Sidebar/Sidebar.jsx";
 import Header from "./Components/Header/Header.jsx";
 import MainContent from "./Components/MainContent/MainContent.jsx";
 import UserProfile from "./Components/UserProfile.js";
-import "./App.css";
-
-
-// import MovieCardDetails from './Components/MovieCardDetails';
-// import UserProfile from './Components/UserProfile';
-// import RealisateurDetails from './Components/RealisateurDetails';
-
-// function App() {
-//   return (
-//       <div className="App">
-//         <Routes>
-//           {/* Route dynamique qui passe l'id en paramètre */}
-//           <Route path="/film/:id" element={<MovieCardDetails />} />
-//           <Route path="/realisateur" element={<RealisateurDetails />} />
-//           {/* Route pour le profil utilisateur */}
-//           {/* <Route path="/profile" element={<UserProfile />} /> */}
-
-//           {/* Route par défaut ou autre page d'accueil */}
-//           {/* <Route path="*" element={<div>Page non trouvée</div>} /> */}
-//         </Routes>
-//       </div>
-
-// function Home() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <MovieCardDetails />
-//         <br />
-//         <Link to="/film">FilmTest</Link>
-//       </header>
-//     </div>
-//   );
-// }
-
-// function App() {
-//   return (
-//     <Routes>
-//       {/* <Route path="/" element={<Home />} /> */}
-//       <Route path="/film" element={<Film />} />
-//       <Route path="/don" element={<Don />} />
-//     </Routes>
-//   );
-// }
+import AjoutFilm from './pages/AjoutFilm'; 
+import React from "react";
 
 const App = () => {
   return (
@@ -61,17 +19,14 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/movie/:id" element={<MovieCardDetails />} />
-          <Route path="/film/:id" element={<Film />} />
+          <Route path="/film/:filmId" element={<Film />} />
           <Route path="/don/:id" element={<Don />} />
           <Route path="/user" element={<UserProfile />} />
+          <Route path="/ajouter-film" element={<AjoutFilm />} />
         </Routes>
       </div>
     </div>
-
   );
 };
 
 export default App;
-
-
-
