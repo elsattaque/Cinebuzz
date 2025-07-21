@@ -1,112 +1,381 @@
-/* Style pour la page AjoutFilm dans le même style que Film.css */
+/* Reset pour s'assurer que la page prend toute la largeur */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
 
 .ajout-film-container {
+  width: 100vw;
   min-height: 100vh;
-  background-color: #d2943d;
-  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #d2943d 0%, #b8822e 25%, #a67422 50%, #b8822e 75%, #d2943d 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.ajout-film-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(210, 148, 61, 0.2) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(245, 192, 119, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(184, 130, 46, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .ajout-film-main-content {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 32px 16px;
+  padding: 32px 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .ajout-film-card {
-  max-width: 80%;
-  margin: 0 auto;
-  background-color: #f5c077;
-  border-radius: 12px;
-  padding: 24px;
-  border: 1px solid #2e1514;
+  background: rgba(245, 192, 119, 0.95);
+  backdrop-filter: blur(15px);
+  border-radius: 24px;
+  padding: 50px;
+  box-shadow: 
+    0 25px 50px rgba(46, 21, 20, 0.4),
+    0 0 0 1px rgba(46, 21, 20, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(46, 21, 20, 0.1);
+  animation: cardFloat 8s ease-in-out infinite, fadeInUp 1s ease forwards;
+  position: relative;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .ajout-film-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 }
 
 .ajout-film-form h2 {
   color: #2e1514;
-  font-weight: 600;
-  font-size: 24px;
-  margin-bottom: 16px;
+  font-size: 28px;
+  font-weight: 700;
   text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #2e1514, #4a2622);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  line-height: 1.4;
+}
+
+.ajout-film-form h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(135deg, #d2943d, #f5c077);
+  border-radius: 2px;
+  animation: underlineGrow 1.2s ease forwards;
+}
+
+@keyframes underlineGrow {
+  from { width: 0; }
+  to { width: 80px; }
+}
+
+.ajout-film-form label {
+  color: #2e1514;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.ajout-film-form label::before {
+  content: "🎬";
+  margin-right: 8px;
+  font-size: 18px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  animation: iconBounce 3s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-2px) rotate(5deg); }
 }
 
 .ajout-film-form input,
 .ajout-film-form textarea {
-  background-color: rgba(146, 64, 14, 0.3);
-  border: 1px solid #2e1514;
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-size: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(46, 21, 20, 0.2);
+  border-radius: 12px;
+  padding: 18px 24px;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 500;
   color: #2e1514;
-  transition: border-color 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  resize: vertical;
+  min-height: 50px;
+}
+
+.ajout-film-form textarea {
+  min-height: 120px;
+  resize: vertical;
 }
 
 .ajout-film-form input:focus,
 .ajout-film-form textarea:focus {
   outline: none;
-  border-color: #2e1514;
-  box-shadow: 0 0 0 2px rgba(46, 21, 20, 0.1);
+  border-color: #d2943d;
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(210, 148, 61, 0.3);
 }
 
 .ajout-film-form input::placeholder,
 .ajout-film-form textarea::placeholder {
-  color: rgba(46, 21, 20, 0.7);
+  color: #8b7355;
+  font-style: italic;
+  font-weight: 400;
 }
 
-.ajout-film-form textarea {
-  min-height: 100px;
-  resize: vertical;
-  font-family: Arial, sans-serif;
-}
-
+/* Styles spécifiques pour les différents types d'input */
 .ajout-film-form input[type="date"] {
-  color: #2e1514;
+  position: relative;
+  cursor: pointer;
+}
+
+.ajout-film-form input[type="date"]::-webkit-calendar-picker-indicator {
+  background: linear-gradient(135deg, #d2943d, #f5c077);
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  filter: invert(0);
 }
 
 .ajout-film-form input[type="number"] {
-  color: #2e1514;
+  -moz-appearance: textfield;
 }
 
-.ajout-film-form button {
-  background-color: #2e1514;
+.ajout-film-form input[type="number"]::-webkit-outer-spin-button,
+.ajout-film-form input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ajout-film-form button[type="submit"] {
+  background: linear-gradient(135deg, #2e1514, #4a2622, #2e1514);
   color: white;
-  font-weight: 500;
-  padding: 12px 24px;
-  border-radius: 8px;
+  font-weight: 700;
+  padding: 22px 40px;
+  border-radius: 16px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s;
-  font-size: 16px;
-  margin-top: 10px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  box-shadow: 0 12px 30px rgba(46, 21, 20, 0.4);
+  position: relative;
+  overflow: hidden;
+  align-self: center;
+  margin-top: 20px;
+  min-width: 200px;
 }
 
-.ajout-film-form button:hover {
-  background-color: #b45309;
+.ajout-film-form button[type="submit"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
 }
 
-.ajout-film-form button:active {
-  transform: translateY(1px);
+.ajout-film-form button[type="submit"]:hover {
+  background: linear-gradient(135deg, #d2943d, #f5c077, #d2943d);
+  color: #2e1514;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(210, 148, 61, 0.5);
 }
 
-/* Responsive design */
+.ajout-film-form button[type="submit"]:hover::before {
+  left: 100%;
+}
+
+.ajout-film-form button[type="submit"]:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Animation d'entrée pour les champs */
+.ajout-film-form > * {
+  animation: slideInLeft 0.6s ease forwards;
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.ajout-film-form > *:nth-child(1) { animation-delay: 0.1s; }
+.ajout-film-form > *:nth-child(2) { animation-delay: 0.15s; }
+.ajout-film-form > *:nth-child(3) { animation-delay: 0.2s; }
+.ajout-film-form > *:nth-child(4) { animation-delay: 0.25s; }
+.ajout-film-form > *:nth-child(5) { animation-delay: 0.3s; }
+.ajout-film-form > *:nth-child(6) { animation-delay: 0.35s; }
+.ajout-film-form > *:nth-child(7) { animation-delay: 0.4s; }
+.ajout-film-form > *:nth-child(8) { animation-delay: 0.45s; }
+.ajout-film-form > *:nth-child(9) { animation-delay: 0.5s; }
+.ajout-film-form > *:nth-child(10) { animation-delay: 0.55s; }
+.ajout-film-form > *:nth-child(11) { animation-delay: 0.6s; }
+.ajout-film-form > *:nth-child(12) { animation-delay: 0.65s; }
+.ajout-film-form > *:nth-child(13) { animation-delay: 0.7s; }
+.ajout-film-form > *:nth-child(14) { animation-delay: 0.75s; }
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Effet de survol pour les groupes label + input */
+.ajout-film-form label:hover {
+  color: #4a2622;
+  transform: translateX(5px);
+}
+
+/* Styles pour les états de validation */
+.ajout-film-form input:valid {
+  border-color: #27ae60;
+}
+
+.ajout-film-form input:invalid:not(:placeholder-shown) {
+  border-color: #e74c3c;
+}
+
+/* Media Queries pour le responsive */
 @media (max-width: 768px) {
   .ajout-film-card {
-    max-width: 95%;
-    margin: 0 auto;
-    padding: 16px;
+    padding: 35px;
+    margin: 15px;
+    border-radius: 20px;
+  }
+  
+  .ajout-film-main-content {
+    padding: 20px 15px;
   }
   
   .ajout-film-form h2 {
-    font-size: 20px;
+    font-size: 24px;
+    line-height: 1.3;
   }
   
   .ajout-film-form input,
   .ajout-film-form textarea {
-    padding: 10px 12px;
+    padding: 16px 20px;
+    font-size: 14px;
   }
+  
+  .ajout-film-form button[type="submit"] {
+    padding: 18px 32px;
+    font-size: 16px;
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ajout-film-container {
+    padding: 10px;
+  }
+  
+  .ajout-film-card {
+    padding: 25px;
+    border-radius: 16px;
+  }
+  
+  .ajout-film-form h2 {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+  
+  .ajout-film-form label {
+    font-size: 14px;
+  }
+  
+  .ajout-film-form input,
+  .ajout-film-form textarea {
+    padding: 14px 18px;
+  }
+  
+  .ajout-film-form button[type="submit"] {
+    padding: 16px 28px;
+    font-size: 15px;
+    min-width: 160px;
+  }
+}
+
+/* Animation de succès (à utiliser avec JavaScript si besoin) */
+@keyframes successPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.success-animation {
+  animation: successPulse 0.6s ease-in-out;
+}
+
+/* Loading state pour le bouton */
+.ajout-film-form button[type="submit"]:disabled {
+  background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.ajout-film-form button[type="submit"]:disabled:hover {
+  transform: none;
+  box-shadow: 0 12px 30px rgba(46, 21, 20, 0.4);
 }

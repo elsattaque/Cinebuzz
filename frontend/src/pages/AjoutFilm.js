@@ -64,7 +64,8 @@ const AjoutFilm = () => {
       <div className="ajout-film-main-content">
         <div className="ajout-film-card">
           <form onSubmit={handleSubmit} className="ajout-film-form">
-            <h2>🎬 Ajouter un nouveau film</h2>
+            <h2>🎬 Une idée de film qui va buzzer ? 
+              Ajoute-la ici et laisse les projecteurs s’allumer !</h2>
 
             <label htmlFor="titre">Titre du film</label>
             <input

@@ -1,33 +1,64 @@
+// server.js
+
 import express from 'express';
 import dotenv from 'dotenv';
-import connection from './db.js';
 import cors from 'cors';
+import bodyParser from 'body-parser';
+import connection from './db.js';
+
+// Import des routes (en ES modules)
 import utilisateurRoute from './routes/spectateur.js';
 import filmRoute from './routes/film.js';
+
+// import R_Don from './routes/R_don.js';
+import reviewRoute from './routes/review.js';
+import R_ajoute from './routes/R_ajoute.js';
+import topFilmsRoute from './routes/topfilm.js';
+
+
+// Chargement des variables d'environnement
 dotenv.config();
 
+// Initialisation de l'application Express
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.use(cors()); // permet au front React de faire des requêtes
-app.use('/api/utilisateur', utilisateurRoute);
-app.use('/api/film', filmRoute);
+// Middlewares globaux
+app.use(cors({ origin: 'http://localhost:3001' })); // autorise le front React
+app.use(bodyParser.json());
 
-// Routes de base
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
-// Démarrage du serveur
-app.listen(port, () => {
-  console.log(`Serveur démarré sur http://localhost:${port}`);
-});
-
+// Connexion à la base de données (test immédiat à l'initialisation)
 (async () => {
   try {
     const [rows] = await connection.query('SELECT * FROM utilisateur');
-    console.log(rows);
+    console.log("Connexion à la base de données réussie. Utilisateurs :", rows);
   } catch (err) {
-    console.error('Erreur lors de la requête test :', err);
+    console.error('Erreur lors de la requête test à la BDD :', err);
   }
 })();
+
+
+app.use((req, res, next) => {
+  console.log(`[LOG] ${req.method} ${req.url}`);
+  next();
+});
+
+
+// Utilisation des routes
+app.use('/api/utilisateur', utilisateurRoute);
+app.use('/api/film', filmRoute);
+// app.use('/don', R_Don);
+app.use('/review', reviewRoute);
+app.use('/ajouter', R_ajoute);
+app.use('/api/film/top', topFilmsRoute);
+
+
+// Route de base
+app.get('/', (req, res) => {
+  res.send('Bienvenue sur le backend du projet !');
+});
+
+// Démarrage du serveur
+app.listen(PORT, () => {
+  console.log(`✅ Serveur backend démarré sur http://localhost:${PORT}`);
+});

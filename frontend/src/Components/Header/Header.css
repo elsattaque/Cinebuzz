@@ -1,6 +1,5 @@
 .header {
   background: linear-gradient(90deg, #270c04);
-  border-bottom: 2px solid #3b82f6;
   padding: 1rem 1.5rem;
 }
 
@@ -121,5 +120,18 @@
 .user-icon {
   width: 1.25rem;
   height: 1.25rem;
+  color: white;
+}
+
+
+.add-pluscircle-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #fbbf24;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.add-pluscircle-icon:hover {
   color: white;
 }

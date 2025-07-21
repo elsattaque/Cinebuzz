@@ -1,4 +1,4 @@
-import { Search, Bell, User } from "lucide-react";
+import { Search, Bell, User, PlusCircle} from "lucide-react"; // Ajoute l'icône PlusCircle
 import logo from "../../assets/images/LogoCinebuzzV1.png";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
@@ -39,11 +39,16 @@ const Header = () => {
         </div>
 
         {/* User Actions */}
+        
         <div className="user-section">
+          <Link to="/ajouter-film">
+             <PlusCircle className="add-pluscircle-icon" />
+          </Link>
           <Bell className="notification-icon" />
           <div className="user-avatar" onClick={goToUserProfile} style={{ cursor: "pointer" }}>
             <User className="user-icon" />
           </div>
+          
         </div>
       </div>
     </header>

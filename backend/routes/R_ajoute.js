@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
+import { ajouterFilm } from '../controlleur/C_ajoute.js'; // ← extension .js obligatoire
+
 const router = express.Router();
 
-const { ajouterFilm } = require('../controlleur/C_ajoute');
+router.post('/', ajouterFilm);
 
-router.post('/', ajouterFilm);  // <-- Pas d'appels ici, juste la fonction
-
-module.exports = router;
+export default router;

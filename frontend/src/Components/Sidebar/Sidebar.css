@@ -44,6 +44,69 @@
   font-size: 0.875rem;
 }
 
+/* Section Top Films */
+.top-rated-section {
+  margin-top: 2rem;
+}
+
+.sidebar-subtitle {
+  color: #fbbf24;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.top-film-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.top-film-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.top-film-item:hover {
+  background-color: #a16207;
+}
+
+.top-film-link {
+  text-decoration: none;
+  color: #fbbf24;
+  flex: 1;
+}
+
+.top-film-title {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: inherit;
+}
+
+.top-film-note {
+  color: #fbbf24;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: 0.75rem;
+}
+
+/* Message quand aucun film */
+.top-film-list p {
+  color: #fbbf24;
+  font-size: 0.875rem;
+  text-align: center;
+  opacity: 0.7;
+  padding: 0.75rem 1rem;
+}
+
 /* Audio Controls */
 .audio-controls {
   margin-top: 3rem;

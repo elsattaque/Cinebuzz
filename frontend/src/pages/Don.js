@@ -1,9 +1,9 @@
+/*
 import React, { useState } from 'react';
 import './Film.css';
 import logo from '../assets/LogoCinebuzzV1.png';
 import { useParams } from "react-router-dom";
 import { moviesData } from '../Data/MoviesData';
-import React from 'react';
 
 const Don = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -45,3 +45,4 @@ const Don = () => {
 };
 
 export default Don;
+*/
