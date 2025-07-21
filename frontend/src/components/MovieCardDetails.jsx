@@ -1,37 +1,32 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../Style/MovieCardDetails.css';
 import logo from '../assets/Logo.png'; 
+import { useNavigate } from 'react-router-dom';
+
 import poster from '../assets/theGloryPoster.webp';
 import ml from '../assets/Actor1.jpg';
 import fl from '../assets/OIP.webp';
 import villain from '../assets/OIP (1).webp';
+import { useParams } from "react-router-dom";
+import { moviesData } from "../Data/MoviesData";
+import React from 'react';
 
 const MovieCardDetails = () => {
+  const navigate = useNavigate();
+
+  const goToFilmPage = () => {
+    navigate(`/film/${movie.id}`);
+  };
+
+  const { id } = useParams();
+  const movie = moviesData.find((m) => m.id.toString() === id);
+
+  if (!movie) return <p>Film introuvable</p>;
+
   return (
     <div className="movie-page">
-      {/* Barre latérale */}
-      <div className="sidebar">
-        <div className="logo">
-          <img src={logo} alt="Logo Cinebuzz" className="logo-image" width={100} />
-        </div>
-        
-        <div className="catalog-links">
-          <Link to="/films" className="nav-link">Catalogue des films</Link>
-          <Link to="/realisateurs" className="nav-link">Catalogue des réalisateurs</Link>
-        </div>
-        
-        <div className="watch-section">
-          <h3>Regarder</h3>
-          <ul className="watch-list">
-            <li>TOP 3</li>
-            <li>Création de la semaine</li>
-            <li>Nouveautés</li>
-            <li>Populaires</li>
-            <li>Recommandations</li>
-          </ul>
-        </div>
-      </div>
 
       {/* Contenu principal */}
       <div className="main-content">
@@ -90,6 +85,11 @@ const MovieCardDetails = () => {
                 <p>Park Yeon Jin (ESFJ)</p>
               </div>
             </div>
+            
+            <button className="go-to-film-button" onClick={goToFilmPage}>
+              🎬 Regarder le film
+            </button>
+            
           </div>
         </div>
       </div>

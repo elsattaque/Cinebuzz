@@ -1,10 +1,12 @@
 
 import express, { json } from 'express';
+import express from 'express';
 import dotenv from 'dotenv';
 import connection from './db.js';
 import cors from 'cors';
 import utilisateurRoute from './routes/spectateur.js';
 import filmRoute from './routes/film.js'; 
+
 dotenv.config();
 
 const app = express();
