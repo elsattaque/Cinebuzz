@@ -1,7 +1,7 @@
 export const moviesData = [
   {
     id: 1,
-    title: "Once Upon a Time in Hollywood",
+    title: "ONCE UPON A TIME IN HOLLYWOOD",
     rating: 94,
     genre: "Thriller",
     image: "/images/OUTH.jpg",

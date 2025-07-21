@@ -1,89 +1,104 @@
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import '../Style/MovieCardDetails.css';
-import poster from '../assets/theGloryPoster.webp';
-import ml from '../assets/Actor1.jpg';
-import fl from '../assets/OIP.webp';
-import villain from '../assets/OIP (1).webp';
-import { useParams } from "react-router-dom";
-import { moviesData } from "../Data/MoviesData";
-import React from 'react';
+
 
 const MovieCardDetails = () => {
-  const navigate = useNavigate();
-
-  const goToFilmPage = () => {
-    navigate(`/film/${movie.id}`);
-  };
-
   const { id } = useParams();
-  const movie = moviesData.find((m) => m.id.toString() === id);
+  const navigate = useNavigate();
+  const [film, setFilm] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!movie) return <p>Film introuvable</p>;
+  useEffect(() => {
+    fetch(`http://localhost:3001/api/film/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setFilm(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Erreur lors du chargement du film:', error);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) return <p>Chargement...</p>;
+  if (!film) return <p>Film introuvable</p>;
+
+  const {
+    titre,
+    date_creation,
+    synopsis,
+    affiche,
+    lien_dons,
+    nom_realisateur,
+    prenom_realisateur,
+    Id_Realisateur,
+    reviews,
+    moyenne_note,
+  } = film;
 
   return (
     <div className="movie-page">
-
-      {/* Contenu principal */}
       <div className="main-content">
         <div className="movie-card">
           {/* Affiche */}
           <div className="left-section">
-            <img src={poster} alt="Affiche The Glory" className="poster" />
+            <img src={affiche} alt={`Affiche de ${titre}`} className="poster" />
           </div>
 
-          {/* Infos */}
+          {/* Détails */}
           <div className="right-section">
-            <h2>Titre : <span>The Glory – Kdrama</span></h2>
+            <h2>Titre : <span>{titre}</span></h2>
             <div className="movie-info">
-              <p><strong>Année :</strong> 2023</p>
-              <p><strong>Distribution :</strong> Lee Do Hyun, Song Hye Kyo, Lim Ji Yeon</p>
-              <p><strong>Genre :</strong> Drame, Mélodrame, Thriller</p>
-              <p><strong>Personnage :</strong> Yeo Jeong</p>
-              <p><strong>Citation préférée :</strong> <em>« Cette histoire n’est pas un conte de fées, c’est une fable. »</em></p>
+              <p><strong>Année :</strong> {new Date(date_creation).getFullYear()}</p>
+              <p>
+                <strong>Réalisateur :</strong>{' '}
+                <Link to={`/realisateur/${Id_Realisateur}`}>
+                  {prenom_realisateur} {nom_realisateur}
+                </Link>
+              </p>
+              {moyenne_note && (
+                <p><strong>Note moyenne :</strong> ⭐ {moyenne_note}/5</p>
+              )}
+              {lien_dons && (
+                <p>
+                  <strong>Lien de dons :</strong>{' '}
+                  <a href={lien_dons} target="_blank" rel="noreferrer">
+                    Soutenir le film
+                  </a>
+                </p>
+              )}
             </div>
 
             <div className="divider"></div>
 
-            {/* Résumé */}
             <div className="summary">
               <h3>Résumé</h3>
-              <p>
-                <strong>The Glory</strong> est un Kdrama captivant sur la vengeance et la rédemption. Il suit l’histoire de Moon Dong Eun, 
-                une lycéenne qui rêve de devenir architecte, mais doit abandonner l’école après avoir subi des violences scolaires brutales. 
-                Des années plus tard, elle planifie méthodiquement sa vengeance en devenant enseignante dans l’école de l’enfant de son ancienne bourreau.
-              </p>
+              <p>{synopsis}</p>
             </div>
 
             <div className="divider"></div>
-            {/* Critique */}
+
             <div className="review">
-              <h3>Mon avis</h3>
-              <p>
-                Une histoire incroyable avec des moments intenses et des émotions profondes. Le développement des personnages est exceptionnel 
-                et l’intrigue te tient en haleine du début à la fin. C’est l’un des meilleurs dramas de vengeance que j’ai vus, avec des performances remarquables de tout le casting.
-              </p>
+              <h3>Commentaires</h3>
+              {reviews.length > 0 ? (
+                reviews.map((review, index) => (
+                  <div key={index} className="review-item">
+                    <p><strong>{review.pseudo || 'Anonyme'} :</strong> ⭐ {review.note}/5</p>
+                    <p>{review.texte_review}</p>
+                    {review.spoiler && <span className="spoiler-alert">⚠️ Spoiler</span>}
+                    <hr />
+                  </div>
+                ))
+              ) : (
+                <p>Aucun commentaire pour ce film.</p>
+              )}
             </div>
 
-            {/* Personnages */}
-            <div className="characters">
-              <div className="character">
-                <img src={ml} alt="Personnage principal masculin" />
-                <p>Ju Yeo Jeong (ENFP)</p>
-              </div>
-              <div className="character">
-                <img src={fl} alt="Personnage principal féminin" />
-                <p>Moon Dong Eun (INTJ)</p>
-              </div>
-              <div className="character">
-                <img src={villain} alt="Antagoniste" />
-                <p>Park Yeon Jin (ESFJ)</p>
-              </div>
-            </div>
-            
-            <button className="go-to-film-button" onClick={goToFilmPage}>
+            <button className="go-to-film-button" onClick={() => navigate(`/film/${id}`)}>
               🎬 Regarder le film
             </button>
-            
           </div>
         </div>
       </div>
