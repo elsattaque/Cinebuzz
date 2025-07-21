@@ -1,13 +1,13 @@
 import { Menu, TrendingUp, Heart, Bookmark, User } from "lucide-react";
 import "./Sidebar.css";
-import React from 'react';
+import React from "react";
 
 const Sidebar = () => {
   const menuItems = [
-    { icon: Menu, label: "Index", isActive: true },
-    { icon: TrendingUp, label: "Trends", isActive: false },
-    { icon: Heart, label: "Following", isActive: false },
-    { icon: Bookmark, label: "Playlist", isActive: false },
+    { icon: Menu, label: "Accueil", isActive: true },
+    { icon: TrendingUp, label: "Tendances", isActive: false },
+    { icon: Heart, label: "Abonnements", isActive: false },
+    { icon: Bookmark, label: "Liste de lecture", isActive: false },
     { icon: User, label: "Contact", isActive: false },
   ];
 
