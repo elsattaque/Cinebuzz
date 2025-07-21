@@ -8,6 +8,7 @@ import Header from "./Components/Header/Header.jsx";
 import MainContent from "./Components/MainContent/MainContent.jsx";
 import UserProfile from "./Components/UserProfile.js";
 import AjoutFilm from './pages/AjoutFilm'; 
+import RealisateurDetails from './Components/RealisateurDetails.jsx';
 import React from "react";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/don/:id" element={<Don />} />
           <Route path="/user" element={<UserProfile />} />
           <Route path="/ajouter-film" element={<AjoutFilm />} />
+          <Route path="/realisateur/:id" element={<RealisateurDetails />} />
         </Routes>
       </div>
     </div>

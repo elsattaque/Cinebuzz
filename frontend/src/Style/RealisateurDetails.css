@@ -1,18 +1,152 @@
-.realisateur-card .right-section a {
+/* Page globale */
+.realisateur-page {
+  display: flex;
+  justify-content: center; /* Centrer horizontalement */
+  padding: 20px;
+  padding-right: 390px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0f0202;
+  min-height: 100vh;
+}
+
+/* Contenu principal centré et limité en largeur */
+.main-content {
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Carte réalisateur */
+.realisateur-card {
+  display: flex;
+  background-color: #180404;
   color: #EEB42C;
-  text-decoration: underline;
-  transition: color 0.3s;
+  border-radius: 16px;
+  padding: 20px;
+  gap: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-.realisateur-card .right-section a:hover {
+/* Section gauche - photo */
+.left-section {
+  flex-shrink: 0;
+  max-width: 300px;
+}
+
+.left-section img.poster {
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 0 12px #AC1212;
+  object-fit: cover;
+}
+
+/* Section droite - détails */
+.right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-section h2 {
   color: #DC901E;
+  margin-bottom: 10px;
 }
 
-.realisateur-card .review ul {
-  list-style: none;
-  padding: 0;
+.right-section h2 span {
+  color: #EEB42C;
 }
 
-.realisateur-card .review li {
-  margin-bottom: 6px;
+/* Infos réalisateur */
+.realisateur-info p {
+  margin: 6px 0;
+  font-size: 1rem;
+}
+
+/* Liens style */
+.right-section a {
+  color: #EEB42C;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.right-section a:hover {
+  color: #DC901E;
+  border-bottom: 2px solid #DC901E;
+}
+
+/* Séparateurs */
+.divider {
+  height: 1px;
+  background-color: #AC1212;
+  margin: 20px 0;
+  box-shadow: 0 0 5px #EEB42C;
+}
+
+/* Sections biographie et films */
+.biographie h3,
+.films h3 {
+  color: #DC901E;
+  margin-bottom: 10px;
+}
+
+.biographie p,
+.films p {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #EEB42C;
+}
+
+/* Liste des films */
+.films ul {
+  list-style: disc inside;
+  padding-left: 20px;
+}
+
+.films li {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.films li a {
+  color: #EEB42C;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+.films li a:hover {
+  color: #DC901E;
+  border-bottom-color: #DC901E;
+}
+
+/* Bouton retour */
+.go-back-button {
+  margin-top: auto;
+  align-self: flex-start;
+  background-color: #4A0202;
+  color: #EEB42C;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 6px #AC1212 inset;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.go-back-button:hover {
+  background-color: #DC901E;
+  color: #180404;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .realisateur-card {
+    flex-direction: column;
+  }
+  
+  .left-section {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
 }
