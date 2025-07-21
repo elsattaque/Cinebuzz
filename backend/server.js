@@ -34,4 +34,3 @@ app.listen(port, () => {
     console.error('Erreur lors de la requête test :', err);
   }
 })();
-
