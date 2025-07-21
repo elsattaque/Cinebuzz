@@ -9,7 +9,7 @@ import MainContent from "./Components/MainContent/MainContent.jsx";
 import UserProfile from "./Components/UserProfile.js";
 import AjoutFilm from './pages/AjoutFilm'; 
 import "./App.css";
-
+import React from "react";
 
 const App = () => {
   return (
@@ -27,11 +27,7 @@ const App = () => {
         </Routes>
       </div>
     </div>
-
   );
 };
 
 export default App;
-
-
-

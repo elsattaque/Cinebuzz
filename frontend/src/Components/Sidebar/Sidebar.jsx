@@ -1,7 +1,8 @@
 import { Menu, TrendingUp, Heart, Bookmark, User } from "lucide-react";
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./Sidebar.css";
+import React from "react";
 
 const Sidebar = () => {
   // État pour stocker les films top notés
@@ -9,10 +10,10 @@ const Sidebar = () => {
 
   // État pour les éléments de menu (facultatif pour highlight actif)
   const menuItems = [
-    { icon: Menu, label: "Index", isActive: true },
-    { icon: TrendingUp, label: "Trends", isActive: false },
-    { icon: Heart, label: "Following", isActive: false },
-    { icon: Bookmark, label: "Playlist", isActive: false },
+    { icon: Menu, label: "Accueil", isActive: true },
+    { icon: TrendingUp, label: "Tendances", isActive: false },
+    { icon: Heart, label: "Abonnements", isActive: false },
+    { icon: Bookmark, label: "Liste de lecture", isActive: false },
     { icon: User, label: "Contact", isActive: false },
   ];
 
