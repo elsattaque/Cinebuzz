@@ -33,6 +33,7 @@ const RealisateurDetails = () => {
     films,             // liste des films réalisés (array)
     lien_site_officiel,
   } = realisateur;
+  console.log(photo);
 
   return (
     <div className="realisateur-page">

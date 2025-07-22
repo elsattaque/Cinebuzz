@@ -38,6 +38,8 @@ const MovieCardDetails = () => {
     moyenne_note,
   } = film;
 
+  console.log(affiche);
+  
   return (
     <div className="movie-page">
       <div className="main-content">

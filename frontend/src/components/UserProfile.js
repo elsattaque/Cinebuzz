@@ -13,6 +13,7 @@ export default function UserProfile() {
   }, []);
 
   if (!user) return <p>Chargement...</p>;
+  console.log(user.photo);
 
   return (
     <div className="user-page">
