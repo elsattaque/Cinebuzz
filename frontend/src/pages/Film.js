@@ -39,7 +39,7 @@ const Film = () => {
   const [isLiked, setIsLiked] = useState(false);
   const { filmId } = useParams();
 
-  const Id_Spectateur = 1; // temporaire
+  const Id_Spectateur = 4; // temporaire
 
   useEffect(() => {
     const fetchFilmData = async () => {
@@ -235,7 +235,11 @@ const Film = () => {
               </div>
               <div className="film-synopsis">
                 <h2>Réalisateur </h2>
-                <p> {(film.prenom_realisateur && film.nom_realisateur) ? `${film.prenom_realisateur} ${film.nom_realisateur}`: "Réalisateur non disponible."}</p>
+                <p>
+                  <Link to={`/realisateur/${filmId}`}>
+                    {(film.prenom_realisateur && film.nom_realisateur) ? `${film.prenom_realisateur} ${film.nom_realisateur}`: "Réalisateur non disponible."}
+                  </Link>
+                </p>    
               </div>
             </div>
           </div>
