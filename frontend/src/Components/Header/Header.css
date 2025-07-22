@@ -68,7 +68,7 @@
 }
 
 .search-input:focus {
-  ring: 2px solid #f59e0b;
+  kerning: 2px solid #f59e0b;
   box-shadow: 0 0 0 2px #f59e0b;
 }
 
@@ -123,7 +123,6 @@
   color: white;
 }
 
-
 .add-pluscircle-icon {
   width: 1.5rem;
   height: 1.5rem;
@@ -134,4 +133,17 @@
 
 .add-pluscircle-icon:hover {
   color: white;
+}
+
+.nav-link {
+  color: #b45309;
+  margin-right: 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.username {
+  margin-left: 12px;
+  font-style: italic;
+  color: #fddf8d;
 }

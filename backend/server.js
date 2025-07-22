@@ -9,6 +9,8 @@ import connection from './db.js';
 // Import des routes (en ES modules)
 import utilisateurRoute from './routes/spectateur.js';
 import filmRoute from './routes/film.js';
+import realisateurRoute from './routes/realisateur.js';
+
 
 // import R_Don from './routes/R_don.js';
 import reviewRoute from './routes/review.js';
@@ -49,6 +51,8 @@ app.use('/api/film', filmRoute);
 app.use('/review', reviewRoute);
 app.use('/ajouter', R_ajoute);
 app.use('/api/film/top', topFilmsRoute);
+app.use('/api/realisateur', realisateurRoute);
+
 
 
 // Route de base

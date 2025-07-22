@@ -1,7 +1,8 @@
-const express = require('express');
+import express from 'express';
+import controller from '../controlleur/C_don.js';
+
 const router = express.Router();
-const controller = require('../controlleur/C_don');
 
 router.get('/film/:id', controller.getLienDonByFilmId);
 
-module.exports = router;
+export default router;

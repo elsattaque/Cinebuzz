@@ -1,10 +1,10 @@
 export const moviesData = [
   {
     id: 1,
-    title: "THE JOKER",
+    title: "ONCE UPON A TIME IN HOLLYWOOD",
     rating: 94,
     genre: "Thriller",
-    image: "/images/joker.jpg",
+    image: "/images/movie1.jpg",
   },
   {
     id: 2,

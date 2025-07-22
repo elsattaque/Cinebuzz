@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Film from './pages/Film';
 import Don from './pages/Don'; 
@@ -8,8 +8,8 @@ import Header from "./Components/Header/Header.jsx";
 import MainContent from "./Components/MainContent/MainContent.jsx";
 import UserProfile from "./Components/UserProfile.js";
 import AjoutFilm from './pages/AjoutFilm'; 
-import "./App.css";
-
+import RealisateurDetails from './Components/RealisateurDetails.jsx';
+import React from "react";
 
 const App = () => {
   return (
@@ -24,14 +24,11 @@ const App = () => {
           <Route path="/don/:id" element={<Don />} />
           <Route path="/user" element={<UserProfile />} />
           <Route path="/ajouter-film" element={<AjoutFilm />} />
+          <Route path="/realisateur/:id" element={<RealisateurDetails />} />
         </Routes>
       </div>
     </div>
-
   );
 };
 
 export default App;
-
-
-
