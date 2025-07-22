@@ -15,7 +15,8 @@ router.get('/:id', async (req, res) => {
         r.lien_dons, 
         r.Id_Realisateur, 
         u.nom AS nom_realisateur, 
-        u.prenom AS prenom_realisateur
+        u.prenom AS prenom_realisateur,
+        r.objectif_dons
       FROM 
         Film f
       JOIN 

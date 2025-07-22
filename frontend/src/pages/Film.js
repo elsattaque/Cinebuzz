@@ -50,7 +50,6 @@ const Film = () => {
         const data = JSON.parse(text);
 
         if (data && data.Id_Film) {
-          // S'assurer que reviews est un tableau
           setFilm({
             ...data,
             reviews: data.reviews || [],
@@ -174,14 +173,21 @@ const Film = () => {
                   </button>
 
                   {film.lien_dons ? (
-                    <a
-                      href={film.lien_dons}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="film-action-button film-don-button"
-                    >
-                      💖 <span>Faire un don</span>
-                    </a>
+                    <div className="film-don-wrapper">
+                      <a
+                        href={film.lien_dons}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="film-action-button film-don-button"
+                      >
+                        💖 <span>Faire un don</span>
+                      </a>
+                      {film.objectif_dons && (
+                        <span className="film-don-objectif">
+                          Objectif : {film.objectif_dons} €
+                        </span>
+                      )}
+                    </div>
                   ) : (
                     <button
                       disabled
@@ -192,13 +198,14 @@ const Film = () => {
                     </button>
                   )}
 
+
                   <div className="film-likes-count">
                     {likes} {likes <= 1 ? 'like' : 'likes'}
                   </div>
                   <div>
                   {film.moyenne_note !== null && (
                   <div className="film-average-note">
-                    🎯 Moyenne des notes : <strong>{film.moyenne_note} / 5</strong>
+                    🎯 Moyenne des reviews : <strong>{film.moyenne_note} / 5</strong>
                   </div>
                 )}
                 </div>

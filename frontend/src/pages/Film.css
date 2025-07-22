@@ -742,3 +742,21 @@ html, body {
     font-size: 24px;
   }
 }
+
+
+.film-don-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}
+
+.film-action-button.film-don-button {
+  flex-shrink: 0; 
+  min-width: 140px; 
+}
+
+.film-don-objectif {
+  white-space: nowrap; 
+  font-weight: bold;
+  font-size: 1rem;
+}
