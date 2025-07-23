@@ -28,8 +28,8 @@ router.get("/:id", async (req, res) => {
         f.Id_Film = ?`,
       [filmId]
     );
-    if (rows.length > 0) {
-      res.json(rows[0]);
+    if (filmRows .length > 0) {
+      res.json(filmRows[0]);
     } else {
       res.status(404).json({ error: "Film non trouvé" });
     }
