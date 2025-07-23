@@ -7,8 +7,25 @@ const router = express.Router();
 router.get("/:id", async (req, res) => {
   const filmId = req.params.id;
   try {
-    const [rows] = await connection.query(
-      "SELECT * FROM Film WHERE Id_Film = ?",
+    // Récupérer les infos du film + réalisateur
+    const [filmRows] = await connection.query(
+      `SELECT 
+        f.*, 
+        r.lien_dons, 
+        r.Id_Realisateur, 
+        u.nom AS nom_realisateur, 
+        u.prenom AS prenom_realisateur,
+        r.objectif_dons
+      FROM 
+        Film f
+      JOIN 
+        Réaliser re ON f.Id_Film = re.Id_Film
+      JOIN 
+        Realisateur r ON re.Id_Realisateur = r.Id_Realisateur
+      JOIN 
+        Utilisateur u ON r.Id_Utilisateur = u.Id_Utilisateur
+      WHERE 
+        f.Id_Film = ?`,
       [filmId]
     );
     if (rows.length > 0) {

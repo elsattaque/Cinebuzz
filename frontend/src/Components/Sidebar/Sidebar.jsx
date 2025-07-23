@@ -55,7 +55,9 @@ const Sidebar = () => {
           {topFilms.length > 0 ? (
             topFilms.map((film) => (
               <li key={film.Id_Film} className="top-film-item">
-                <Link to={`/movie/${film.Id_Film}`} className="top-film-link">
+                <Link to={`/film/${film.Id_Film}`} className="top-film-link">
+
+                
                   <span className="top-film-title">{film.titre}</span>
                 </Link>
                 <span className="top-film-note">{parseFloat(film.moyenne).toFixed(2)} ⭐</span>

@@ -18,18 +18,16 @@ import R_ajoute from './routes/R_ajoute.js';
 import topFilmsRoute from './routes/topfilm.js';
 
 
-// Chargement des variables d'environnement
 dotenv.config();
 
-// Initialisation de l'application Express
+// Init de l'application Express
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middlewares globaux
 app.use(cors({ origin: 'http://localhost:3001' })); // autorise le front React
 app.use(bodyParser.json());
 
-// Connexion à la base de données (test immédiat à l'initialisation)
+// Connexion à la bdd
 (async () => {
   try {
     const [rows] = await connection.query('SELECT * FROM utilisateur');
@@ -39,7 +37,7 @@ app.use(bodyParser.json());
   }
 })();
 
-
+// log de debug qu'est ce qui esr appelé
 app.use((req, res, next) => {
   console.log(`[LOG] ${req.method} ${req.url}`);
   next();
