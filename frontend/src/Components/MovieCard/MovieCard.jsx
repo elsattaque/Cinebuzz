@@ -16,6 +16,7 @@ const MovieCard = ({ movie }) => {
   const poster = movie.affiche || movie.image;
   const rating = movie.note || movie.rating;
 
+  console.log(poster);
   return (
     <Link to={`/movie/${id}`} className="movie-card-link">
       <div className="movie-card">
