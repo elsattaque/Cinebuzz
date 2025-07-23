@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom';
-import '../Style/MovieCardDetails.css';
-import poster from '../assets/theGloryPoster.webp';
-import ml from '../assets/Actor1.jpg';
-import fl from '../assets/OIP.webp';
-import villain from '../assets/OIP (1).webp';
+import { useNavigate } from "react-router-dom";
+import "../Style/MovieCardDetails.css";
+import poster from "../assets/theGloryPoster.webp";
+import ml from "../assets/Actor1.jpg";
+import fl from "../assets/OIP.webp";
+import villain from "../assets/OIP (1).webp";
 import { useParams } from "react-router-dom";
 import { moviesData } from "../Data/MoviesData";
-import React from 'react';
+import React from "react";
 
 const MovieCardDetails = () => {
   const navigate = useNavigate();
@@ -16,13 +16,15 @@ const MovieCardDetails = () => {
   };
 
   const { id } = useParams();
-  const movie = moviesData.find((m) => m.id.toString() === id);
+  const movie =
+    moviesData.find((m) => m.id?.toString() === id) ||
+    moviesData.find((m) => m.Id_Film?.toString() === id);
 
-  if (!movie) return <p>Film introuvable</p>;
-
+  if (!movie) {
+    return <div>Film introuvable</div>;
+  }
   return (
     <div className="movie-page">
-
       {/* Contenu principal */}
       <div className="main-content">
         <div className="movie-card">
@@ -33,13 +35,30 @@ const MovieCardDetails = () => {
 
           {/* Infos */}
           <div className="right-section">
-            <h2>Titre : <span>The Glory – Kdrama</span></h2>
+            <h2>
+              Titre : <span>The Glory – Kdrama</span>
+            </h2>
             <div className="movie-info">
-              <p><strong>Année :</strong> 2023</p>
-              <p><strong>Distribution :</strong> Lee Do Hyun, Song Hye Kyo, Lim Ji Yeon</p>
-              <p><strong>Genre :</strong> Drame, Mélodrame, Thriller</p>
-              <p><strong>Personnage :</strong> Yeo Jeong</p>
-              <p><strong>Citation préférée :</strong> <em>« Cette histoire n’est pas un conte de fées, c’est une fable. »</em></p>
+              <p>
+                <strong>Année :</strong> 2023
+              </p>
+              <p>
+                <strong>Distribution :</strong> Lee Do Hyun, Song Hye Kyo, Lim
+                Ji Yeon
+              </p>
+              <p>
+                <strong>Genre :</strong> Drame, Mélodrame, Thriller
+              </p>
+              <p>
+                <strong>Personnage :</strong> Yeo Jeong
+              </p>
+              <p>
+                <strong>Citation préférée :</strong>{" "}
+                <em>
+                  « Cette histoire n’est pas un conte de fées, c’est une fable.
+                  »
+                </em>
+              </p>
             </div>
 
             <div className="divider"></div>
@@ -48,9 +67,13 @@ const MovieCardDetails = () => {
             <div className="summary">
               <h3>Résumé</h3>
               <p>
-                <strong>The Glory</strong> est un Kdrama captivant sur la vengeance et la rédemption. Il suit l’histoire de Moon Dong Eun, 
-                une lycéenne qui rêve de devenir architecte, mais doit abandonner l’école après avoir subi des violences scolaires brutales. 
-                Des années plus tard, elle planifie méthodiquement sa vengeance en devenant enseignante dans l’école de l’enfant de son ancienne bourreau.
+                <strong>The Glory</strong> est un Kdrama captivant sur la
+                vengeance et la rédemption. Il suit l’histoire de Moon Dong Eun,
+                une lycéenne qui rêve de devenir architecte, mais doit
+                abandonner l’école après avoir subi des violences scolaires
+                brutales. Des années plus tard, elle planifie méthodiquement sa
+                vengeance en devenant enseignante dans l’école de l’enfant de
+                son ancienne bourreau.
               </p>
             </div>
 
@@ -59,8 +82,11 @@ const MovieCardDetails = () => {
             <div className="review">
               <h3>Mon avis</h3>
               <p>
-                Une histoire incroyable avec des moments intenses et des émotions profondes. Le développement des personnages est exceptionnel 
-                et l’intrigue te tient en haleine du début à la fin. C’est l’un des meilleurs dramas de vengeance que j’ai vus, avec des performances remarquables de tout le casting.
+                Une histoire incroyable avec des moments intenses et des
+                émotions profondes. Le développement des personnages est
+                exceptionnel et l’intrigue te tient en haleine du début à la
+                fin. C’est l’un des meilleurs dramas de vengeance que j’ai vus,
+                avec des performances remarquables de tout le casting.
               </p>
             </div>
 
@@ -79,11 +105,10 @@ const MovieCardDetails = () => {
                 <p>Park Yeon Jin (ESFJ)</p>
               </div>
             </div>
-            
+
             <button className="go-to-film-button" onClick={goToFilmPage}>
               🎬 Regarder le film
             </button>
-            
           </div>
         </div>
       </div>
