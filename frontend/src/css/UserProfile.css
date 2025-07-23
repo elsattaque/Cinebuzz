@@ -84,14 +84,26 @@ body {
 
 .recent-list {
   display: flex;
-  gap: 12px;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .recent-item {
-  width: 70px;
-  height: 90px;
-  background-color: #f5d891;
-  border-radius: 15px;
+  width: 120px;
+  text-align: center;
+}
+
+.recent-thumbnail {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.recent-title {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .reviews-section {
@@ -116,26 +128,103 @@ body {
 
 .review-card {
   background-color: #661d1d;
-  color: white;
+  color: #fff;
   padding: 20px;
   border-radius: 20px;
   position: relative;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.review-card:hover {
+  transform: scale(1.02);
 }
 
 .review-text {
-  font-size: 1.2em;
-  margin-bottom: 15px;
+  font-size: 1.1em;
   font-style: italic;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  position: relative;
+}
+
+.review-text::before,
+.review-text::after {
+  content: "“";
+  font-size: 2em;
+  color: #f5d891;
+  position: absolute;
+}
+
+.review-text::before {
+  left: -10px;
+  top: -10px;
+}
+
+.review-text::after {
+  content: "”";
+  right: -10px;
+  bottom: -10px;
 }
 
 .review-meta {
   background-color: #f5d891;
   color: #661d1d;
+  padding: 10px 15px;
   border-radius: 12px;
+  font-size: 0.95em;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-/* 
-  bottom: -10px;
-  left: -5px;
-  position: absolute;
-  width: max-content; */
+.review-meta strong {
+  font-size: 1.1em;
+}
+
+.spoiler-warning {
+  background-color: #bb2222;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 8px;
+  width: fit-content;
+  margin-top: 5px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.recent-item {
+  width: 200px;
+  text-align: center;
+  background-color: #f5d891;
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+}
+
+.recent-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.recent-thumbnail {
+  width: 100%;
+  height: 220px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.recent-title {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #5a2c2c;
+}
+
+.recent-item-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  transition: transform 0.2s ease-in-out;
+}
