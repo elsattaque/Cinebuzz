@@ -3,6 +3,7 @@ import "./GenreFilter.css";
 
 const GenreFilter = ({ selectedGenre, onGenreChange }) => {
   const genres = [
+    { name: "All", label: "Tous les films" },
     { name: "Horreur", label: "Horreur" },
     { name: "Thriller", label: "Thriller" },
     { name: "Amour", label: "Amour ♥" },

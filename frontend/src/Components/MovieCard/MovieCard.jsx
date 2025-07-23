@@ -1,6 +1,6 @@
 import "./MovieCard.css";
 import { Link } from "react-router-dom";
-import React from 'react';
+import React from "react";
 
 const MovieCard = ({ movie }) => {
   const getRatingColor = (rating) => {
@@ -10,18 +10,25 @@ const MovieCard = ({ movie }) => {
     return "rating-very-low";
   };
 
+  // Gestion flexible selon que les films viennent de la BDD ou de moviesData
+  const id = movie.Id_Film || movie.id;
+  const title = movie.titre || movie.title;
+  const poster = movie.affiche || movie.image;
+  const rating = movie.note || movie.rating;
+
   return (
-    <Link to={`/movie/${movie.id}`} className="movie-card-link">
+    <Link to={`/movie/${id}`} className="movie-card-link">
       <div className="movie-card">
         <div className="movie-poster">
-          <div className="movie-content">
-            <span className="movie-title-overlay">{movie.title}</span>
-          </div>
-          <div className={`movie-rating ${getRatingColor(movie.rating)}`}>
-            {movie.rating}
-          </div>
+          <img src={poster} alt={title} className="movie-image" />
+
+          {rating && (
+            <div className={`movie-rating ${getRatingColor(rating)}`}>
+              {rating}
+            </div>
+          )}
         </div>
-        <h3 className="movie-title">{movie.title}</h3>
+        <h3 className="movie-title">{title}</h3>
       </div>
     </Link>
   );

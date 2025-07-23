@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import '../Style/MovieCardDetails.css';
-
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import "../Style/MovieCardDetails.css";
 
 const MovieCardDetails = () => {
   const { id } = useParams();
@@ -17,7 +16,7 @@ const MovieCardDetails = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Erreur lors du chargement du film:', error);
+        console.error("Erreur lors du chargement du film:", error);
         setLoading(false);
       });
   }, [id]);
@@ -34,12 +33,10 @@ const MovieCardDetails = () => {
     nom_realisateur,
     prenom_realisateur,
     Id_Realisateur,
-    reviews,
+    reviews = [],
     moyenne_note,
   } = film;
 
-  console.log(affiche);
-  
   return (
     <div className="movie-page">
       <div className="main-content">
@@ -51,21 +48,28 @@ const MovieCardDetails = () => {
 
           {/* Détails */}
           <div className="right-section">
-            <h2>Titre : <span>{titre}</span></h2>
+            <h2>
+              Titre : <span>{titre}</span>
+            </h2>
+
             <div className="movie-info">
-              <p><strong>Année :</strong> {new Date(date_creation).getFullYear()}</p>
               <p>
-                <strong>Réalisateur :</strong>{' '}
+                <strong>Année :</strong> {new Date(date_creation).getFullYear()}
+              </p>
+              <p>
+                <strong>Réalisateur :</strong>{" "}
                 <Link to={`/realisateur/${Id_Realisateur}`}>
                   {prenom_realisateur} {nom_realisateur}
                 </Link>
               </p>
               {moyenne_note && (
-                <p><strong>Note moyenne :</strong> ⭐ {moyenne_note}/5</p>
+                <p>
+                  <strong>Note moyenne :</strong> ⭐ {moyenne_note}/5
+                </p>
               )}
               {lien_dons && (
                 <p>
-                  <strong>Lien de dons :</strong>{' '}
+                  <strong>Lien de dons :</strong>{" "}
                   <a href={lien_dons} target="_blank" rel="noreferrer">
                     Soutenir le film
                   </a>
@@ -87,9 +91,14 @@ const MovieCardDetails = () => {
               {reviews.length > 0 ? (
                 reviews.map((review, index) => (
                   <div key={index} className="review-item">
-                    <p><strong>{review.pseudo || 'Anonyme'} :</strong> ⭐ {review.note}/5</p>
+                    <p>
+                      <strong>{review.pseudo || "Anonyme"} :</strong> ⭐{" "}
+                      {review.note}/5
+                    </p>
                     <p>{review.texte_review}</p>
-                    {review.spoiler && <span className="spoiler-alert">⚠️ Spoiler</span>}
+                    {review.spoiler && (
+                      <span className="spoiler-alert">⚠️ Spoiler</span>
+                    )}
                     <hr />
                   </div>
                 ))
@@ -98,7 +107,10 @@ const MovieCardDetails = () => {
               )}
             </div>
 
-            <button className="go-to-film-button" onClick={() => navigate(`/film/${id}`)}>
+            <button
+              className="go-to-film-button"
+              onClick={() => navigate(`/film/${id}`)}
+            >
               🎬 Regarder le film
             </button>
           </div>
